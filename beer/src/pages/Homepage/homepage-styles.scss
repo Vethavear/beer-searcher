@@ -1,0 +1,58 @@
+@import "../../vars.scss";
+
+.homePage {
+    height: 90vh;
+    display: flex;
+    .leftContent {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        padding: 2rem 0;
+        .header {
+            .header-h1 {
+                font-size: 3rem;
+                position: relative;
+                &::before {
+                    content: '';
+                    position: absolute;
+                    bottom: -4px;
+                    left: 10%;
+                    right: 10%;
+                    height: 2px;
+                    background: #c9ae7a;
+                    transition: all 0.5s;
+                }
+            }
+        }
+        .about {
+            width: 80%;
+            padding: 4rem 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid $secondary-color;
+            .about-h2 {
+                font-size: 2rem;
+                padding-bottom: 2rem;
+            }
+            .aboutList {
+                .aboutListItem {
+                    padding: 1rem 0;
+                    font-size: 1.6rem;
+                }
+            }
+        }
+    }
+
+    .rightContent {
+        flex: 2;
+        height: 100%;
+        .img {
+            height: 100%;
+            width: 100%;
+        }
+    }
+}
