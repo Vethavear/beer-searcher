@@ -36,13 +36,16 @@
                 margin: 2rem 0;
                 padding: 0 10%;
                 display: flex;
-                justify-content: space-around;
+                justify-content: space-between;
+                align-items: flex-end;
+
                 .input {
                     border: none;
                     background: none;
                     border-bottom: 2px solid $border-color;
                     width: 70%;
                     font-size: 2rem;
+                    margin-top: 1rem;
                 }
             }
             .button {
