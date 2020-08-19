@@ -23,7 +23,7 @@ const  Homepage = props => {
         <Button>Start Exploring</Button>
             </div>
             <div className="rightContent">
-                    <img className="img" src={beerImg} alt=""/>
+                    <img className="img" src={beerImg} alt="beer"/>
             </div>
         </section>
     )

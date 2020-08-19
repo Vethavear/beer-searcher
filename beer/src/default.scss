@@ -16,7 +16,8 @@ body{
     height: 100%;
 }
 
-*, ::before, ::after {
+*, ::before, ::after, :focus {
+    outline: none;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -25,7 +26,7 @@ body{
 body{
     line-height: 1.1;
     background-color: rgba(253,253,253,1);
-    font-family: 'Domine', serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 a{
