@@ -3,6 +3,8 @@ import Button from '../../components/Button/Button'
 import FormInput from '../../components/FormInput/FormInput'
 import { auth, handleUserProfile } from './../../firebase/utils'
 import './SignUp.scss'
+import AuthWrapper from '../../components/AuthWrapper/AuthWrapper'
+
 
 const initalState = {
     login: '',
@@ -43,7 +45,7 @@ class SignUp extends Component {
         try {
             const { user } = await auth.createUserWithEmailAndPassword(login, password);
             await handleUserProfile(user);
-            this.setState({...initalState})
+            this.setState({ ...initalState })
         } catch (err) { console.log(err) }
     }
     render() {
@@ -51,7 +53,7 @@ class SignUp extends Component {
         return (
 
 
-            < section className="signUp" >
+            <AuthWrapper>
                 {
                     errors.length > 0 && (
                         <ul>
@@ -64,16 +66,16 @@ class SignUp extends Component {
                     )
                 }
 
-                <form className="signUpForm" onSubmit={this.handleSubmit}>
-                    <FormInput label="e-mail" type="email" name="login" onChange={this.handleChange}></FormInput>
-                    <FormInput label="password" type="password" name="password" onChange={this.handleChange}></FormInput>
-                    <FormInput label="password" type="password" name="confirmPassword" onChange={this.handleChange}></FormInput>
+                <form className="form" onSubmit={this.handleSubmit}>
+                    <FormInput label="e-mail" value={login} type="email" name="login" handleChange={this.handleChange}></FormInput>
+                    <FormInput label="password" value={password} type="password" name="password" handleChange={this.handleChange}></FormInput>
+                    <FormInput label="password" value={confirmPassword} type="password" name="confirmPassword" handleChange={this.handleChange}></FormInput>
                     <Button type="submit">Sign Up</Button>
                     <p>Already registered?</p>
                     <a href="/signIn">Sign In</a>
                 </form>
 
-            </section >
+            </AuthWrapper>
         )
         // return (
         //     <section className="signUp">
