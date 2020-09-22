@@ -1,4 +1,7 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect, } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { signInUser } from './../../redux/User/user.actions'
+import { withRouter } from 'react-router-dom'
 import Button from '../../components/Button/Button'
 import './SignIn.scss'
 import FormInput from '../../components/FormInput/FormInput'
@@ -6,54 +9,48 @@ import { auth } from './../../firebase/utils'
 import AuthWrapper from '../../components/AuthWrapper/AuthWrapper'
 
 
-const initalState = {
-    login: '',
-    password: '',
-}
+const mapState = ({ user }) => ({
+    signInSuccess: user.signInSuccess
+})
 
-class SignIn extends Component {
+const SignIn = props => {
+    const { signInSuccess } = useSelector(mapState);
+    const dispatch = useDispatch();
+    const [login, setLogin] = useState('');
+    const [password, setPassword] = useState('');
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            ...initalState
+    useEffect(() => {
+        if (signInSuccess) {
+            resetForm();
+            props.history.push('/')
         }
-        this.handleChange = this.handleChange.bind(this);
+    }, [signInSuccess])
+
+    const resetForm = () => {
+        setLogin('');
+        setPassword('');
     }
-    handleChange(e) {
-        const { name, value } = e.target;
-        this.setState({
-            [name]: value
-        });
-    }
-    handleSubmit = async event => {
+
+    const handleSubmit = event => {
         event.preventDefault();
-        const { login, password } = this.state;
+        dispatch(signInUser({ login, password }))
 
 
-        try {
-            await auth.signInWithEmailAndPassword(login, password);
-
-            this.setState({ ...initalState })
-        } catch (err) { console.log(err) }
     }
 
-    render() {
-        const { login, password } = this.state;
-        return (
-            <AuthWrapper>
+    return (
+        <AuthWrapper>
 
-                <form className="form" onSubmit={this.handleSubmit}>
-                    <FormInput label="e-mail" value={login} type="email" name="login" handleChange={this.handleChange}></FormInput>
-                    <FormInput label="password" value={password} type="password" name="password" handleChange={this.handleChange}></FormInput>
-                    <Button type="submit">Sign In</Button>
-                    <p>First time?</p>
-                    <a href="/signUp">Sign Up</a>
-                </form>
-                </AuthWrapper>
-        )
-    }
+            <form className="form" onSubmit={handleSubmit}>
+                <FormInput label="e-mail" value={login} type="email" name="login" handleChange={e => setLogin(e.target.value)}></FormInput>
+                <FormInput label="password" value={password} type="password" name="password" handleChange={e => setPassword(e.target.value)}></FormInput>
+                <Button type="submit">Sign In</Button>
+                <p>First time?</p>
+                <a href="/signUp">Sign Up</a>
+            </form>
+        </AuthWrapper>
+    )
 
 }
 
-export default SignIn
+export default withRouter(SignIn)

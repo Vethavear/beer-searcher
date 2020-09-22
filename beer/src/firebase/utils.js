@@ -18,7 +18,7 @@ export const handleUserProfile = async (userAuth, additionalData) => {
 
     if (!snapshot.exists) {
 
-        const {email} = userAuth;
+        const { email } = userAuth;
         const timestamp = new Date();
 
         try {
