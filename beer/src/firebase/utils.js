@@ -10,7 +10,7 @@ export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
 
-export const handleUserProfile = async (userAuth, additionalData) => {
+export const handleUserProfile = async ({userAuth, additionalData}) => {
     if (!userAuth) return;
     const { uid } = userAuth;
     const userRef = firestore.doc(`users/${uid}`);
@@ -31,4 +31,14 @@ export const handleUserProfile = async (userAuth, additionalData) => {
     }
     return userRef;
 
+}
+
+export const getCurrentUser = () => {
+    return new Promise((resolve, reject) =>{
+        const unsubscribe = auth.onAuthStateChanged(userAuth => {
+            unsubscribe();
+            resolve(userAuth)
+            
+        })
+    })
 }

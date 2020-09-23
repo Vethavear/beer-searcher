@@ -1,6 +1,6 @@
 import React, { useState, useEffect, } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { signInUser } from './../../redux/User/user.actions'
+import { signInStart } from './../../redux/User/user.actions'
 import { withRouter } from 'react-router-dom'
 import Button from '../../components/Button/Button'
 import './SignIn.scss'
@@ -10,21 +10,21 @@ import AuthWrapper from '../../components/AuthWrapper/AuthWrapper'
 
 
 const mapState = ({ user }) => ({
-    signInSuccess: user.signInSuccess
+    currentUser: user.currentUser
 })
 
 const SignIn = props => {
-    const { signInSuccess } = useSelector(mapState);
+    const { currentUser } = useSelector(mapState);
     const dispatch = useDispatch();
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
 
     useEffect(() => {
-        if (signInSuccess) {
+        if (currentUser) {
             resetForm();
             props.history.push('/')
         }
-    }, [signInSuccess])
+    }, [currentUser])
 
     const resetForm = () => {
         setLogin('');
@@ -33,7 +33,7 @@ const SignIn = props => {
 
     const handleSubmit = event => {
         event.preventDefault();
-        dispatch(signInUser({ login, password }))
+        dispatch(signInStart({ login, password }))
 
 
     }

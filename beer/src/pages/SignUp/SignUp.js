@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { signUpUser } from './../../redux/User/user.actions'
+import { signUpStart } from './../../redux/User/user.actions'
 import { withRouter } from 'react-router-dom'
 import Button from '../../components/Button/Button'
 import FormInput from '../../components/FormInput/FormInput'

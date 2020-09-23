@@ -5,36 +5,39 @@ export const setCurrentUser = user => ({
     payload: user
 })
 
-export const signInUser = ({ login, password }) => async dispatch => {
-    try {
-        await auth.signInWithEmailAndPassword(login, password);
-        dispatch({
-            type: userTypes.SIGN_IN_SUCCESS,
-            payload: true
-        })
-    } catch (err) {
-    }
-}
+export const signInStart = userCredentials => ({
+    type: userTypes.SIGN_IN_START,
+    payload: userCredentials
+})
 
-export const signUpUser = ({login, password, confirmPassword}) => async dispatch => {
-    if (password !== confirmPassword) {
-        const err = ['Password don\'t match!'];
-        dispatch({
-            type: userTypes.SIGN_UP_ERROR,
-            payload: err
-        })
-        return;
+export const signInSuccess = user => ({
+    type: userTypes.SIGN_IN_SUCCESS,
+    payload: user
+})
 
-    }
-          try {
-            const { user } = await auth.createUserWithEmailAndPassword(login, password);
-            await handleUserProfile(user);
-            dispatch({
-                type:userTypes.SIGN_UP_SUCCESS,
-                payload: true
-            })
-  
-        } catch (err) {
-            console.log(err)
-        }
-}
+export const checkUserSession = () => ({
+    type: userTypes.CHECK_USER_SESSION
+})
+
+export const signOutStart = () => ({
+    type: userTypes.SIGN_OUT_START
+})
+
+export const signOutSuccess = () => ({
+    type: userTypes.SIGN_OUT_SUCCESS
+})
+
+export const signUpStart = userCredentials => ({
+    type: userTypes.SIGN_UP_START,
+    payload: userCredentials
+
+})
+
+export const userError = err = ({
+    type: userTypes.USER_ERROR,
+    payload: err
+})
+
+
+
+
