@@ -1,7 +1,7 @@
 import React, { useState, useEffect, } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { signInStart } from './../../redux/User/user.actions'
-import { withRouter } from 'react-router-dom'
+import { useHistory} from 'react-router-dom'
 import Button from '../../components/Button/Button'
 import './SignIn.scss'
 import FormInput from '../../components/FormInput/FormInput'
@@ -22,7 +22,7 @@ const SignIn = props => {
     useEffect(() => {
         if (currentUser) {
             resetForm();
-            props.history.push('/')
+            history.push('/')
         }
     }, [currentUser])
 
@@ -53,4 +53,4 @@ const SignIn = props => {
 
 }
 
-export default withRouter(SignIn)
+export default SignIn

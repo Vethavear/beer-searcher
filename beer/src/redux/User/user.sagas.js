@@ -68,28 +68,20 @@ export function* signUp({
         yield put(
             userError(err)
         )
-        // dispatch({
-        //     type: userTypes.SIGN_UP_ERROR,
-        //     payload: err
-        // })
         return;
-
     }
     try {
-        const { user } = await auth.createUserWithEmailAndPassword(login, password);
-        await handleUserProfile(user);
-        dispatch({
-            type: userTypes.SIGN_UP_SUCCESS,
-            payload: true
-        })
-
+        const { user } = yield auth.createUserWithEmailAndPassword(login, password);
+        // check this
+        // yield call(handleUserProfile, { userAuth: user });
+        yield getSnapshotFromUserAuth(user);
     } catch (err) {
         console.log(err)
     }
 }
 
 export function* onSignUpStart() {
-    takeLatest(userTypes.SIGN_UP_START, signUp)
+    yield takeLatest(userTypes.SIGN_UP_START, signUp)
 }
 
 export default function* userSagas() {
