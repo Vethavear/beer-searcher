@@ -1,6 +1,7 @@
 import React from 'react'
 import './explorer-styles.scss';
 import Button from '../../components/Button/Button'
+import BeerList from '../../components/BeerList/BeerList'
 
 
 const Explorer = props => {
@@ -28,8 +29,7 @@ const Explorer = props => {
                 <Button type="button">Random Beer</Button>
             </div>
             <div className="rightContent">
-                <div className="beerList">
-                </div>
+              <BeerList></BeerList>
             </div>
         </section>
     )

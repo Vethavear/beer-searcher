@@ -18,6 +18,7 @@ const SignIn = props => {
     const dispatch = useDispatch();
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
+    const history = useHistory();
 
     useEffect(() => {
         if (currentUser) {

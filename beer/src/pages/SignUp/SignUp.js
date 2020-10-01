@@ -43,7 +43,7 @@ const SignUp = props => {
 
     const handleSubmit = event => {
         event.preventDefault();
-        dispatch(signUpUser({
+        dispatch(signUpStart({
             login, password, confirmPassword
         }))
 
