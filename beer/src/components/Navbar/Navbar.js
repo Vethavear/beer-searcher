@@ -1,9 +1,19 @@
 import React from 'react';
+import {useSelector, useDispatch} from 'react-redux'
+import {signOutStart} from './../../redux/User/user.actions';
 import './navbar-styles.scss';
-import {auth} from '../../firebase/utils';
-export const Navbar = (props) => {
 
-    const { currentUser } = props;
+const mapState = ({user}) => (
+    {
+    currentUser: user.currentUser
+    })
+
+export const Navbar = (props) => {
+ const dispatch = useDispatch();
+    const { currentUser } = useSelector(mapState);
+    const signOut = () => {
+        dispatch(signOutStart())
+    }
     return (
         <div className="navbar">
             <div className="logo">
@@ -18,24 +28,19 @@ export const Navbar = (props) => {
                 </li>
 
                 {currentUser && (<li className="navItem">
-                    <a href="/signOut" onClick={() => auth.signOut()}className="navItemLink">Sign out</a>
+                    <a onClick={() => signOut()} className="navItemLink">Sign out</a>
                 </li>)}
 
                 {!currentUser && (<li className="navItem">
                     <a href="/signin" className="navItemLink">Sign in</a>
                 </li>)}
-
-
             </ul>
         </div>
     )
-
-
-
 }
 
 Navbar.defaultProps = {
     currentUser: true
 }
 
-export default Navbar;
+export default Navbar
