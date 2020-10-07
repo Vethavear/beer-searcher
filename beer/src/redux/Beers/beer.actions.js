@@ -8,3 +8,7 @@ export const getAllBeersSucceed = (beers) => ({
 export const getAllBeersStart = () => ({
     type: beerTypes.GET_ALL_BEERS_START,
 })
+export const showBeerDetails = (beerDetails) => ({
+    type: beerTypes.SHOW_BEER_DETAILS,
+    payload: beerDetails
+})

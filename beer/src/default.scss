@@ -1,38 +1,39 @@
+@import './vars.scss';
 
-html{
+html {
     font-size: 10px;
-  
 }
 
 html,
-body{
-
-    
-
+body {
 }
 
 #root,
-.App{
+.App {
     height: 100%;
 }
 
-*, ::before, ::after, :focus {
+*,
+::before,
+::after,
+:focus {
     outline: none;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-body{
+body {
     line-height: 1.1;
-    background-color: rgba(253,253,253,1);
-    font-family: 'Montserrat', sans-serif;
+    background-color: $background-color;
+
+    font-family: "Montserrat", sans-serif;
 }
 
-a{
+a {
     text-decoration: none;
 }
 
-ul{
+ul {
     list-style: none;
 }
