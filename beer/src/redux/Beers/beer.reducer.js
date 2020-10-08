@@ -3,6 +3,7 @@ import beerTypes from './beers.types'
 const INITAL_STATE = {
     favourites: [],
     beers: [],
+    // beerDetails: undefined
 }
 
 const beerReducer = (state = INITAL_STATE, action) => {
@@ -12,11 +13,11 @@ const beerReducer = (state = INITAL_STATE, action) => {
                 ...state,
                 beers: action.payload
             }
-            case beerTypes.SHOW_BEER_DETAILS:
-                return {
-                    ...state,
-                    beerDetails: action.payload
-                }
+            // case beerTypes.SHOW_BEER_DETAILS:
+            //     return {
+            //         ...state,
+            //         beerDetails: action.payload
+            //     }
             default:
                 return state;
     }

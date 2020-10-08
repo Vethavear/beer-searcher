@@ -1,26 +1,23 @@
 import './beerList.scss'
-import { useSelector, useDispatch } from 'react-redux'
-import { getAllBeersStart, showBeerDetails } from '../../redux/Beers/beer.actions'
-import React, { useEffect } from 'react'
+import { useDispatch, } from 'react-redux'
+import { getAllBeersStart } from '../../redux/Beers/beer.actions'
+import React, { useEffect, useState } from 'react'
 import BeerListItem from './BeerListItem/BeerListItem'
 import BeerDetails from '../BeerDetails/BeerDetails'
+import axios from 'axios'
+
 
 
 
 const BeerList = () => {
-    const dispatch = useDispatch();
+    const [beerDetails, setBeerDetails] = useState(undefined);
+    const [beers, setBeers] = useState([]);
+
     useEffect(() => {
-        dispatch(getAllBeersStart())
+        axios.get(`https://api.punkapi.com/v2/beers/`).then(result => {
+            return setBeers(result.data)
+        }).catch(error => console.log(error));
     }, [])
-    const beersFromState = useSelector(({ beers }) => beers.beers)
-    console.log(beersFromState)
-
-    const beerDetails = useSelector(({ beers }) => beers.beerDetails)
-    console.log(beerDetails)
-
-    const addBeerDetailsToState = (beerDetails) => {
-        dispatch(showBeerDetails(beerDetails))
-    }
 
     if (beerDetails !== undefined) {
         return (
@@ -30,7 +27,7 @@ const BeerList = () => {
 
     return (
         < div className="beerList" >
-            {beersFromState.map(beerData => <BeerListItem beer={beerData} key={beerData.id} renderBeerDetails={addBeerDetailsToState}></BeerListItem>)}
+            {beers.map(el => <BeerListItem beer={el} key={el.id} renderBeerDetails={setBeerDetails}></BeerListItem>)}
         </div >
     )
 }
