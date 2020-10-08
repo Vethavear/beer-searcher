@@ -21,7 +21,7 @@ const BeerList = () => {
 
     if (beerDetails !== undefined) {
         return (
-            <BeerDetails beer={beerDetails}></BeerDetails>
+            <BeerDetails beer={beerDetails} changeBeerDetails={setBeerDetails}></BeerDetails>
         )
     }
 

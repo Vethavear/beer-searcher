@@ -4,14 +4,16 @@ import { IconContext } from "react-icons";
 import { IoIosArrowRoundBack } from "react-icons/io";
 
 
-const BeerDetails = ({ beer }) => {
+const BeerDetails = ({ beer, changeBeerDetails }) => {
     return (
         <div className="beerDetails">
             <header className="beerDetailsHeader">
                 <h2 className="beerName">
                     {beer.name}
                 </h2>
-                <button className="beerDetailsBackButton">
+                <button className="beerDetailsBackButton" onClick={() => {
+                   changeBeerDetails(undefined)
+                }}>
                     <IconContext.Provider value={{ className: 'arrowIcon' }}>
                         <IoIosArrowRoundBack></IoIosArrowRoundBack>
                     </IconContext.Provider>

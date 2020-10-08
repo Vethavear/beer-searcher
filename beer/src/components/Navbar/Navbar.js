@@ -1,16 +1,26 @@
 import React from 'react';
-import {useSelector, useDispatch} from 'react-redux'
-import {signOutStart} from './../../redux/User/user.actions';
+import { useSelector, useDispatch } from 'react-redux'
+import { signOutStart } from './../../redux/User/user.actions';
+import { addFavStart } from './../../redux/Beers/beer.actions';
 import './navbar-styles.scss';
+import { IconContext } from "react-icons";
+import { FaStar } from "react-icons/fa";
 
-const mapState = ({user}) => (
+
+
+
+const mapState = ({ user }) => (
     {
-    currentUser: user.currentUser
+        currentUser: user.currentUser
     })
 
+
 export const Navbar = (props) => {
- const dispatch = useDispatch();
-    const { currentUser } = useSelector(mapState);
+    const dispatch = useDispatch();
+    const { currentUser } = useSelector(
+        mapState);
+    const favourites = useSelector(state => state.favourites)
+
     const signOut = () => {
         dispatch(signOutStart())
     }
@@ -29,6 +39,15 @@ export const Navbar = (props) => {
 
                 {currentUser && (<li className="navItem">
                     <a onClick={() => signOut()} className="navItemLink">Sign out</a>
+                </li>)}
+                {currentUser && (<li className="navItem">
+                    <a onClick={() => {
+                        
+                        dispatch(addFavStart({ name: 'gówno' })) }} className="navItemLink">
+                        <IconContext.Provider value={{ className: 'arrowIcon' }}>
+                            <FaStar></FaStar>
+                        </IconContext.Provider>
+                    </a>
                 </li>)}
 
                 {!currentUser && (<li className="navItem">

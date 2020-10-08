@@ -44,31 +44,36 @@ export const getCurrentUser = () => {
 }
 
 export const getFavs = () => {
-    const { uid } = getCurrentUser();
-    firestore.collection('favs').doc(uid).get().then(doc => {
-        if (doc.exists) {
-            const { favs } = doc.data();
-            return favs;
-        } else {
-            console.log('no such beer in favs')
-        }
-    })
-
-
+    getCurrentUser().then(user => {
+        firestore.collection('favs').doc(user.uid).get().then(doc => {
+            if (doc.exists) {
+                console.log('elo')
+                const { favs } = doc.data();
+                console.log(favs)
+                return favs;
+            } else {
+                console.log('no such beer in favs')
+            }
+        }).catch(err => console.log(err))
+    }
+    )
 }
 
 export const addFav = (fav) => {
-    const { uid } = getCurrentUser();
-    firestore.collection('favs').doc(uid).set({
-        favs: fav
-    }, {
-        merge: true
-    })
+    getCurrentUser().then(user => {
+        firestore.collection('favs').doc(user.uid).set({
+            favs: fav
+        }, {
+            merge: true
+        }).then(console.log('added'))
+    });
+
 }
 
 export const deleteFav = (fav) => {
-    const { uid } = getCurrentUser();
-    const favs = getFavs();
-    favs.splice(favs.indexOf(fav), 1);
-    firestore.collection('favs').doc(uid).set({ favs: favs })
+    getCurrentUser().then(user => {
+        const favs = getFavs();
+        favs.splice(favs.indexOf(fav), 1);
+        firestore.collection('favs').doc(user.uid).set({ favs: favs })
+    })
 }

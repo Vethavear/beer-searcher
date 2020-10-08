@@ -1,8 +1,9 @@
-import { getFavs } from '../../firebase/utils'
+import { addFav, getFavs, deleteFav } from '../../firebase/utils'
 import { takeLatest, put, all, call } from 'redux-saga/effects'
-import {getAllBeersSucceed} from './beer.actions'
+import { addFavSucceed, deleteFavSucceed, getFavsSucceed } from './beer.actions'
 import beerTypes from './beers.types'
 import axios from 'axios'
+
 
 
 function* getBeer(id) {
@@ -27,20 +28,38 @@ function* searchBeersWithFilters() {
 
 }
 
-function* addBeerToFav() {
+function* addBeerToFavourite({ payload: beer }) {
 
+    yield addFav(beer)
+    yield put(addFavSucceed(beer));
+}
+function* deleteBeerFromFavourite({ payload: beer }) {
+
+    yield deleteFav(beer)
+    yield put(deleteFavSucceed(beer));
 }
 
-function* deleteBeerFromFav() {
-
+function* onAddBeerToFavouriteStart() {
+    try {
+        yield takeLatest(beerTypes.ADD_FAV_START, addBeerToFavourite)
+    } catch (err) { console.log(err) }
+}
+function* onDelBeerToFavouriteStart() {
+    yield takeLatest(beerTypes.DEL_FAV_START, deleteBeerFromFavourite)
 }
 
+function* onGetFavsStart() {
+    yield takeLatest(beerTypes.GET_FAVS_START, getFavouriteBeers)
+}
 function* getFavouriteBeers() {
-
+    yield put(getFavsSucceed(yield getFavs()))
 }
 
 
 export default function* beerSagas() {
     yield all([
-        call(getAllBeersStart)])
+        call(getAllBeersStart),
+        call(onAddBeerToFavouriteStart),
+        call(onDelBeerToFavouriteStart),
+        call(onGetFavsStart)])
 }
