@@ -24,15 +24,15 @@ export const addFavStart = (beer) => ({
     type: beerTypes.ADD_FAV_START,
     payload: beer
 })
-export const addFavSucceed = (favourities) => ({
+export const addFavSucceed = (beer) => ({
     type: beerTypes.ADD_FAV_SUCCEED,
-    payload: favourities
+    payload: beer
 })
 export const deleteFavStart = (beer) => ({
     type: beerTypes.DEL_FAV_START,
     payload: beer
 })
-export const deleteFavSucceed = (favourities) => ({
+export const deleteFavSucceed = (beer) => ({
     type: beerTypes.DEL_FAV_SUCCEED,
-    payload: favourities
+    payload: beer
 })

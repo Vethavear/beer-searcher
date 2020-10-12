@@ -1,9 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { signOutStart } from './../../redux/User/user.actions';
-import { addFavStart } from './../../redux/Beers/beer.actions';
 import './navbar-styles.scss';
-import { IconContext } from "react-icons";
 import { FaStar } from "react-icons/fa";
 
 
@@ -19,7 +17,7 @@ export const Navbar = (props) => {
     const dispatch = useDispatch();
     const { currentUser } = useSelector(
         mapState);
-    const favourites = useSelector(state => state.favourites)
+    const favourites = useSelector(state => state.beers.favourites)
 
     const signOut = () => {
         dispatch(signOutStart())
@@ -43,10 +41,8 @@ export const Navbar = (props) => {
                 {currentUser && (<li className="navItem">
                     <a onClick={() => {
                         
-                        dispatch(addFavStart({ name: 'gówno' })) }} className="navItemLink">
-                        <IconContext.Provider value={{ className: 'arrowIcon' }}>
+                        }} className="navItemLink">
                             <FaStar></FaStar>
-                        </IconContext.Provider>
                     </a>
                 </li>)}
 

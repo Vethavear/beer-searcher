@@ -3,12 +3,9 @@ import 'firebase/firestore'
 import 'firebase/auth'
 import { firebaseConfig } from './config'
 
-
 firebase.initializeApp(firebaseConfig);
-
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
-
 
 export const handleUserProfile = async ({ userAuth, additionalData }) => {
     if (!userAuth) return;
@@ -44,36 +41,36 @@ export const getCurrentUser = () => {
 }
 
 export const getFavs = () => {
-    getCurrentUser().then(user => {
-        firestore.collection('favs').doc(user.uid).get().then(doc => {
-            if (doc.exists) {
-                console.log('elo')
-                const { favs } = doc.data();
-                console.log(favs)
-                return favs;
-            } else {
-                console.log('no such beer in favs')
-            }
-        }).catch(err => console.log(err))
-    }
-    )
+    return new Promise((resolve, reject) => {
+        getCurrentUser().then(user => {
+            firestore.collection('favs').doc(user.uid).get().then(doc => {
+                if (doc.exists) {
+                    const { favs } = doc.data();
+                    return favs;
+                } else {
+                    console.log('no beers in favs')
+                }
+            }).then(favs => {
+                resolve(favs)
+            })
+        }
+        )
+    })
 }
 
 export const addFav = (fav) => {
     getCurrentUser().then(user => {
         firestore.collection('favs').doc(user.uid).set({
-            favs: fav
-        }, {
-            merge: true
-        }).then(console.log('added'))
+            favs: firebase.firestore.FieldValue.arrayUnion(fav)
+        }, { merge: true }).then(console.log('added'))
     });
 
 }
 
 export const deleteFav = (fav) => {
     getCurrentUser().then(user => {
-        const favs = getFavs();
-        favs.splice(favs.indexOf(fav), 1);
-        firestore.collection('favs').doc(user.uid).set({ favs: favs })
+        firestore.collection('favs').doc(user.uid).set({
+            favs: firebase.firestore.FieldValue.arrayRemove(fav)
+        }, { merge: true }).then(console.log('usunieto')).catch(err => console.log(err))
     })
 }

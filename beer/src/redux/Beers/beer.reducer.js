@@ -3,12 +3,11 @@ import beerTypes from './beers.types'
 const INITAL_STATE = {
     favourites: [],
     beers: [],
-    // beerDetails: undefined
 }
 
 const beerReducer = (state = INITAL_STATE, action) => {
     switch (action.type) {
-        case beerTypes.GET_FAV_SUCCEED:
+        case beerTypes.GET_FAVS_SUCCEED:
             return ({
                 ...state,
                 favourites: action.payload

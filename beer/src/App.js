@@ -8,6 +8,7 @@ import Explorer from './pages/Explorer/Explorer';
 import { Route } from 'react-router-dom'
 import SignUp from './pages/SignUp/SignUp';
 import { checkUserSession } from './redux/User/user.actions'
+import {getFavsStart} from './redux//Beers/beer.actions'
 
 //hoc
 // import WithAuth from './hoc/'
@@ -17,8 +18,8 @@ const App = props => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(checkUserSession())
-
+    dispatch(checkUserSession());
+    dispatch(getFavsStart());
 
   }, [])
 

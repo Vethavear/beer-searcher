@@ -1,6 +1,4 @@
 import './beerList.scss'
-import { useDispatch, } from 'react-redux'
-import { getAllBeersStart } from '../../redux/Beers/beer.actions'
 import React, { useEffect, useState } from 'react'
 import BeerListItem from './BeerListItem/BeerListItem'
 import BeerDetails from '../BeerDetails/BeerDetails'
