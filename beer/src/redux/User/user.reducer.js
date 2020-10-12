@@ -2,8 +2,7 @@ import userTypes from './user.types';
 
 const INITAL_STATE = {
     currentUser: null,
-    userErr: []
-
+    userErr: [],
 };
 
 const userReducer = (state = INITAL_STATE, action) => {
@@ -18,7 +17,7 @@ const userReducer = (state = INITAL_STATE, action) => {
             return {
                 ...state,
                 ...INITAL_STATE
-                // inital state to reset user to null
+                // inital state to reset user and his favs to null
             }
         case userTypes.ERROR:
             return {

@@ -32,7 +32,7 @@ export const signUpStart = userCredentials => ({
 
 })
 
-export const userError = err = ({
+export const userError = err => ({
     type: userTypes.USER_ERROR,
     payload: err
 })

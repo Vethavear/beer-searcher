@@ -1,0 +1,90 @@
+@import "../../vars.scss";
+
+.beerDetails {
+    padding: 2% 5%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100%;
+    .beerDetailsHeader {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        display: flex;
+        justify-content: space-between;
+        .beerName {
+            font-size: 1.7rem;
+            background: white;
+            border: $secondary-color 1px solid;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+        }
+        .beerDetailsBackButton {
+            cursor: pointer;
+            border: none;
+            background: white;
+            border: 1px solid $secondary-color;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            padding: 0 1rem;
+
+            .arrowIcon {
+                font-size: 5rem;
+            }
+        }
+    }
+    .beerDetailsList {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        .beerDetailsListItem {
+            flex: 1;
+            padding: 1rem;
+            &:nth-child(even) {
+                background: $tertiary-color;
+            }
+            &:nth-child(1) {
+                flex: 0.5;
+            }
+
+            .title {
+                position: relative;
+                display: inline-block;
+                margin: 1rem;
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    bottom: -2%;
+                    left: 3%;
+                    right: 3%;
+                    height: 1px;
+                    background: $secondary-color;
+                }
+            }
+            .content {
+                height: 80%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                .contentItem {
+                    font-style: italic;
+                    font-weight: bold;
+                    padding: 0.5rem;
+                    font-size: 1.7rem;
+                }
+            }
+        }
+    }
+
+    .beerImg {
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        img {
+            height: 50%;
+        }
+    }
+}

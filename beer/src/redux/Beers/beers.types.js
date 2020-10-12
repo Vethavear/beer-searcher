@@ -1,0 +1,7 @@
+const beerTypes = {
+    GET_ALL_BEERS_START: 'GET_ALL_BEERS_START',
+    GET_ALL_BEERS_SUCCEED: 'GET_ALL_BEERS_SUCCEED',
+    GET_BEER: 'GET_BEER',
+    SHOW_BEER_DETAILS: 'SHOW_BEER_DETAILS'
+}
+export default beerTypes

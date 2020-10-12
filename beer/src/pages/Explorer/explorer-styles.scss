@@ -3,6 +3,7 @@
 .explorer {
     height: 90vh;
     display: flex;
+    font-size: 1.5rem;
     .leftContent {
         flex: 1;
         display: flex;
@@ -20,10 +21,9 @@
             right: -15%;
             width: 30%;
             height: 15%;
-            background: rgba(253, 253, 253, 1);
+            background: #fcfcfc;
             transform: rotate(45deg);
         }
-        // border-right: 1px solid $border-color;
         .searcher {
             display: flex;
             flex-direction: column;
