@@ -13,11 +13,11 @@ function* getBeer(id) {
 
 
 function* getAllBeers() {
-    try {
-        const response = yield axios.get(`https://api.punkapi.com/v2/beers/`);
-        yield put(getAllBeersSucceed(response.data))
-    }
-    catch (err) { console.log(err) }
+    // try {
+    //     const response = yield axios.get(`https://api.punkapi.com/v2/beers/`);
+    //     yield put(getAllBeersSucceed(response.data))
+    // }
+    // catch (err) { console.log(err) }
 }
 
 export function* getAllBeersStart() {
