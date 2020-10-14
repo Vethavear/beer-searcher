@@ -11,7 +11,7 @@ const FavouritesStar = ({ favedBeer }) => {
     const dispatch = useDispatch();
     const favs = useSelector(state => state.beers.favourites);
     if (Array.isArray(favs) && favs.length > 0) {
-        if (favs.find(el => el.id == favedBeer.id)) {
+        if (favs.find(el => el.id === favedBeer.id)) {
             return (
                 <button className="favsButton" onClick={() => {
                     dispatch(deleteFavStart(favedBeer))

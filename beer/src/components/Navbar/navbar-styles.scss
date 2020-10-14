@@ -5,6 +5,7 @@
     height: 10vh;
     display: flex;
     justify-content: space-between;
+    position: relative;
     align-items: center;
     padding: 2rem 10rem;
     // border-bottom: 1px solid $border-color;
@@ -17,6 +18,9 @@
         .navItem {
             padding: 0 2rem;
             .navItemLink {
+                background: none;
+                border: none;
+                font-weight: normal;
                 font-size: 2.5rem;
                 color: black;
                 position: relative;

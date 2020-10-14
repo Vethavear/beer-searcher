@@ -54,7 +54,10 @@ export const getFavs = () => {
                 resolve(favs)
             })
         }
-        )
+        ).catch(err =>{
+            console.log(err);
+            reject('user logged out')
+        })
     })
 }
 

@@ -12,7 +12,7 @@ const BeerDetails = ({ beer, changeBeerDetails }) => {
                     {beer.name}
                 </h2>
                 <button className="beerDetailsBackButton" onClick={() => {
-                   changeBeerDetails(undefined)
+                   changeBeerDetails({})
                 }}>
                     <IconContext.Provider value={{ className: 'arrowIcon' }}>
                         <IoIosArrowRoundBack></IoIosArrowRoundBack>

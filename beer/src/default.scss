@@ -26,12 +26,15 @@ body {
 body {
     line-height: 1.1;
     background-color: $background-color;
-
     font-family: "Montserrat", sans-serif;
 }
 
 a {
     text-decoration: none;
+}
+
+button{
+    font-family: "Montserrat", sans-serif;
 }
 
 ul {

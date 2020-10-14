@@ -10,16 +10,12 @@ import SignUp from './pages/SignUp/SignUp';
 import { checkUserSession } from './redux/User/user.actions'
 import {getFavsStart} from './redux//Beers/beer.actions'
 
-//hoc
-// import WithAuth from './hoc/'
 
-
-const App = props => {
+const App =() => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(checkUserSession());
-    dispatch(getFavsStart());
 
   }, [])
 
