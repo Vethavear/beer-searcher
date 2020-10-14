@@ -1,35 +1,78 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import './explorer-styles.scss';
 import Button from '../../components/Button/Button'
 import BeerList from '../../components/BeerList/BeerList'
+import FormInput from '../../components/FormInput/FormInput'
+import {showBeerDetails} from '../../redux/Beers/beer.actions'
+import axios from 'axios'
 
 
-const Explorer = props => {
+function useFormFields(initialValues) {
+    const [formFields, setFormFields] = useState(initialValues);
+    const createChangeHandler = (key) => (e) => {
+        const { value } = e.target;
+        setFormFields((prev) => ({ ...prev, [key]: value }));
+    };
+    return { formFields, createChangeHandler };
+}
+
+const Explorer = () => {
+    const beerDetails = useSelector(state => state.beers.beerDetails);
+    const dispatch = useDispatch();
+    const [beers, setBeers] = useState([]);
+    const randomBeerQuery = new Object('https://api.punkapi.com/v2/beers/random');
+    const initalQuery = 'https://api.punkapi.com/v2/beers?';
+    const [query, setQuery] = useState(initalQuery);
+    useEffect(() => {
+        // LOADING NA TRUE
+        axios.get(query).then(result => {
+            return setBeers(result.data)
+        }).catch(error =>
+            { console.log(error);
+                return setBeers({})
+            });
+    }, [query])
+
+    const { formFields, createChangeHandler } = useFormFields({
+        beer_name: "",
+        yeast: "",
+        hops: "",
+        malt: "",
+        food: "",
+    });
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        Object.keys(formFields).forEach(key => {
+            if (formFields[key].length > 1) {
+                setQuery(prevValue =>
+                    prevValue + '&' + key + '=' + formFields[key]
+                )
+            }
+        })
+        if (beerDetails.hasOwnProperty('name')) {
+            dispatch(showBeerDetails({}));
+        }
+    };
+    const showRandomBeer = () => {
+        setQuery(randomBeerQuery);
+        dispatch(showBeerDetails(beers[0]))
+    }
     return (
         <section className="explorer">
             <div className="leftContent">
-                <form className="searcher">
-                    <label className="label" htmlFor="name">Name
-                        <input className="input" type="text" name="name" />
-                    </label>
-                    <label className="label" htmlFor="yeast">Yeast
-                        <input className="input" type="text" name="yeast" />
-                    </label>
-                    <label className="label" htmlFor="hops">Hops
-                        <input className="input" type="text" name="hops" />
-                    </label>
-                    <label className="label" htmlFor="malt">Malt
-                        <input className="input" type="text" name="malt" />
-                    </label>
-                    <label className="label" htmlFor="food">Food
-                        <input className="input" type="text" name="food" />
-                    </label>
+                <form className="searcher" onSubmit={handleSubmit}>
+                    <FormInput label="Name" type="text" name="beer_name" handleChange={createChangeHandler('beer_name')}></FormInput>
+                    <FormInput label="Yeast" type="text" name="yeast" handleChange={createChangeHandler('yeast')}></FormInput>
+                    <FormInput label="Hops" type="text" name="hops" handleChange={createChangeHandler('hops')}></FormInput>
+                    <FormInput label="Malt" type="text" name="malt" handleChange={createChangeHandler('malt')}></FormInput>
+                    <FormInput label="Food" type="text" name="food" handleChange={createChangeHandler('food')}></FormInput>
                     <Button type="submit">Search</Button>
                 </form>
-                <Button type="button">Random Beer</Button>
+                <Button type="button" onClick={showRandomBeer}>Random Beer</Button>
             </div>
             <div className="rightContent">
-              <BeerList></BeerList>
+                <BeerList beers={beers}></BeerList>
             </div>
         </section>
     )
