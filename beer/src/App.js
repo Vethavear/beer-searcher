@@ -8,17 +8,14 @@ import Explorer from './pages/Explorer/Explorer';
 import { Route } from 'react-router-dom'
 import SignUp from './pages/SignUp/SignUp';
 import { checkUserSession } from './redux/User/user.actions'
-
-//hoc
-// import WithAuth from './hoc/'
+import {getFavsStart} from './redux//Beers/beer.actions'
 
 
-const App = props => {
+const App =() => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(checkUserSession())
-
+    dispatch(checkUserSession());
 
   }, [])
 

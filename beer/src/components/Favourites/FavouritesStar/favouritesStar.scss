@@ -1,0 +1,13 @@
+.favsButton {
+    position: absolute;
+    top: 3%;
+    left: 4%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    .favStar {
+        font-size: 30px;
+        z-index: 10;
+    }
+}

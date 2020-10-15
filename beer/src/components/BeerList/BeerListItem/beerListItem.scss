@@ -1,6 +1,11 @@
-@import '../../../vars.scss';
+@import "../../../vars.scss";
+
+.beerListItemWrapper{
+    position: relative;
+}
 .beerListItem {
     display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: center;
     background: white;
@@ -14,7 +19,7 @@
         font-size: 2rem;
         font-weight: bold;
         text-align: center;
-        padding: 1rem;
+        padding: 2rem;
     }
     .beerImg {
         position: relative;
@@ -22,7 +27,7 @@
             padding: 3rem;
             height: 300px;
         }
-        &::after{
+        &::after {
             content: "";
             position: absolute;
             top: 2%;

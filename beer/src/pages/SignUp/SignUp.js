@@ -6,6 +6,8 @@ import Button from '../../components/Button/Button'
 import FormInput from '../../components/FormInput/FormInput'
 import './SignUp.scss'
 import AuthWrapper from '../../components/AuthWrapper/AuthWrapper'
+import {Link} from 'react-router-dom'
+
 
 const mapState = ({ user }) => ({
     currentUser: user.currentUser,
@@ -68,7 +70,7 @@ const SignUp = props => {
                 <FormInput label="password" value={confirmPassword} type="password" name="confirmPassword" handleChange={e => setConfirmPassword(e.target.value)} ></FormInput>
                 <Button type="submit">Sign Up</Button>
                 <p>Already registered?</p>
-                <a href="/signIn">Sign In</a>
+                <Link to="/signIn">Sign In</Link>
             </form>
 
         </AuthWrapper >

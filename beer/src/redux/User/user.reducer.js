@@ -17,7 +17,6 @@ const userReducer = (state = INITAL_STATE, action) => {
             return {
                 ...state,
                 ...INITAL_STATE
-                // inital state to reset user and his favs to null
             }
         case userTypes.ERROR:
             return {

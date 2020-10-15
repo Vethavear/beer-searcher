@@ -1,18 +1,29 @@
-import React from 'react';
-import {useSelector, useDispatch} from 'react-redux'
-import {signOutStart} from './../../redux/User/user.actions';
+import React, { useState, useEffect } from 'react';
+// import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { signOutStart } from './../../redux/User/user.actions';
+import { toggleFavs, getFavsStart, clearBeerAndFavsOnSignOut } from './../../redux/Beers/beer.actions'
 import './navbar-styles.scss';
+import { FaStar } from "react-icons/fa";
+import Favourites from '../Favourites/Favourites'
 
-const mapState = ({user}) => (
-    {
-    currentUser: user.currentUser
-    })
 
-export const Navbar = (props) => {
- const dispatch = useDispatch();
-    const { currentUser } = useSelector(mapState);
+export const Navbar = () => {
+    const dispatch = useDispatch();
+    const { currentUser } = useSelector(state => state.user);
+    const favourites = useSelector(state => state.beers.favourites);
+    const isFavVisible = useSelector(state => state.beers.toggleFavs);
+    useEffect(() => {
+
+        dispatch(getFavsStart());
+
+    }, [])
+
+
     const signOut = () => {
-        dispatch(signOutStart())
+        dispatch(signOutStart());
+        dispatch(clearBeerAndFavsOnSignOut())
     }
     return (
         <div className="navbar">
@@ -21,18 +32,27 @@ export const Navbar = (props) => {
             </div>
             <ul className="nav">
                 <li className="navItem">
-                    <a href="/" className="navItemLink"  >Home </a>
+                    <Link className="navItemLink" to="/">Home</Link>
                 </li>
                 <li className="navItem">
-                    <a href="/explore" className="navItemLink">Explore</a>
+                    <Link className="navItemLink" to="/explore">Explore</Link>
                 </li>
 
                 {currentUser && (<li className="navItem">
-                    <a onClick={() => signOut()} className="navItemLink">Sign out</a>
+                    <button onClick={() => signOut()} className="navItemLink">Sign out</button>
+                </li>)}
+                {currentUser && (<li className="navItem">
+                    <a onClick={() => {
+                        dispatch(toggleFavs());
+                    }} className="navItemLink">
+                        <FaStar></FaStar>
+                    </a>
+                    {isFavVisible && (<Favourites favBeers={favourites}></Favourites>)}
                 </li>)}
 
                 {!currentUser && (<li className="navItem">
-                    <a href="/signin" className="navItemLink">Sign in</a>
+
+                <Link className="navItemLink" to="/signin">Sign in</Link>
                 </li>)}
             </ul>
         </div>
