@@ -37,7 +37,6 @@ const Explorer = () => {
             return setBeers({})
         });
     }, [query])
-
     const { formFields, createChangeHandler } = useFormFields({
         beer_name: "",
         yeast: "",
@@ -47,6 +46,7 @@ const Explorer = () => {
     });
     const handleSubmit = (e) => {
         e.preventDefault();
+        setQuery(initalQuery);
         Object.keys(formFields).forEach(key => {
             if (formFields[key].length > 1) {
                 setQuery(prevValue =>
@@ -57,6 +57,7 @@ const Explorer = () => {
         if (beerDetails.hasOwnProperty('name')) {
             dispatch(showBeerDetails({}));
         }
+        setLeftContentVisible(false);
     };
     const showRandomBeer = () => {
         setQuery(randomBeerQuery);
