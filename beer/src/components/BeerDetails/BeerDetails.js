@@ -2,8 +2,7 @@ import React, { Suspense } from 'react'
 import './beerDetails.scss'
 import { IconContext } from "react-icons";
 import { IoIosArrowRoundBack } from "react-icons/io";
-import image from '../../assets/fernando-latorre-HqEFdR1MDSo-unsplash.png'
-
+import FavouritesStar from '../Favourites/FavouritesStar/FavouritesStar'
 
 const BeerDetails = ({ beer, changeBeerDetails }) => {
 
@@ -26,6 +25,7 @@ const BeerDetails = ({ beer, changeBeerDetails }) => {
 
                 </li>
                 <li className="beerDetailsListItem">
+                    <FavouritesStar favedBeer={beer}></FavouritesStar>
                     <h3 className="title">Yeast</h3>
                     <div className="content">
                         <p className="contentItem">

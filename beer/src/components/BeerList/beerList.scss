@@ -1,7 +1,14 @@
-.beerList{
+@import "../../vars.scss";
+.beerList {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
-    // justify-content:center;
-    margin:5% 10%;
-    align-items: center;    
+    margin: 5% 10%;
+    align-items: center;
+}
+
+@media (max-width: $mobile) {
+    .beerList {
+        margin: 8% 5%;
+    }
 }

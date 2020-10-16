@@ -1,8 +1,11 @@
 @import "../../vars.scss";
 
 .beerDetails {
+    position: relative;
+    z-index: 0;
     padding: 2% 5%;
     display: grid;
+    background: $background-color;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 8% 92%;
     height: 100%;
@@ -39,6 +42,7 @@
         flex-direction: column;
         height: 100%;
         .beerDetailsListItem {
+            position: relative;
             flex: 1;
             padding: 1rem;
             &:nth-child(even) {
@@ -47,7 +51,12 @@
             &:nth-child(1) {
                 flex: 0.5;
             }
-
+            .favsButton {
+                position: absolute;
+                top: 0;
+                right: 0;
+                margin: 0.5rem;
+            }
             .title {
                 position: relative;
                 display: inline-block;
@@ -69,6 +78,7 @@
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
+                padding: 0.5rem 0;
                 .contentItem {
                     font-style: italic;
                     font-weight: bold;
@@ -86,6 +96,18 @@
         align-items: center;
         img {
             max-height: 400px;
+        }
+    }
+}
+
+@media (max-width: $mobile) {
+    .beerDetails {
+        padding: 0.5% 0.5%;
+        height:auto;
+        display: flex;
+        flex-direction: column;
+        .beerImg{
+            margin-top: 5%;
         }
     }
 }

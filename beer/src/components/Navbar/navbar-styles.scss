@@ -8,7 +8,6 @@
     position: relative;
     align-items: center;
     padding: 2rem 10rem;
-    // border-bottom: 1px solid $border-color;
     .logo {
         font-size: 3rem;
     }
@@ -16,6 +15,9 @@
     .nav {
         display: flex;
         .navItem {
+            .favStar{
+                font-size: 30px;
+            }
             padding: 0 2rem;
             .navItemLink {
                 background: none;
@@ -35,10 +37,38 @@
                     opacity: 0;
                     transition: all 0.5s;
                 }
-                &:focus, &:hover{
-                    &::before{
-                        opacity:1;
+                &:focus,
+                &:hover {
+                    &::before {
+                        opacity: 1;
                     }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: $mobile) {
+    .navbar {
+        padding: 0;
+        position: fixed;
+        z-index: 1;
+        bottom: 0;
+        overflow: visible;
+        .logo {
+            display: none;
+        }
+        .nav {
+            width: 100%;
+            justify-content: space-between;
+            position: relative;
+            .navItem {
+                .favStar{
+                    font-size: 2rem;
+                }
+                .navItemLink {
+                    font-size: 2rem;
+                    padding: 0;
                 }
             }
         }

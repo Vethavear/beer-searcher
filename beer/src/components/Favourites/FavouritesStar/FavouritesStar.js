@@ -1,10 +1,9 @@
 import './favouritesStar.scss'
-import { IconContext } from "react-icons";
 import { FaStar } from "react-icons/fa";
 import { AiOutlineStar } from "react-icons/ai"
 import { addFavStart, deleteFavStart } from '../../../redux/Beers/beer.actions'
 import { useSelector, useDispatch } from 'react-redux'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 
 const FavouritesStar = ({ favedBeer }) => {
@@ -16,9 +15,7 @@ const FavouritesStar = ({ favedBeer }) => {
                 <button className="favsButton" onClick={() => {
                     dispatch(deleteFavStart(favedBeer))
                 }}>
-                    <IconContext.Provider value={{ className: 'favStar' }}>
-                        <FaStar></FaStar>
-                    </IconContext.Provider>
+                    <FaStar className='favStar'></FaStar>
                 </button>
             )
         }
@@ -27,9 +24,7 @@ const FavouritesStar = ({ favedBeer }) => {
         <button className="favsButton" onClick={() => {
             dispatch(addFavStart(favedBeer))
         }}>
-            <IconContext.Provider value={{ className: 'favStar' }}>
-                <AiOutlineStar></AiOutlineStar>
-            </IconContext.Provider>
+            <AiOutlineStar className='favStar'></AiOutlineStar>
         </button>
     )
 

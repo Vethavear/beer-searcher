@@ -1,9 +1,9 @@
 import React from 'react'
 import './favourites.scss'
 import FavouritiesItem from './FavouritesItem/FavouritesItem'
-const Favourites = ({ favBeers }) => {
+const Favourites = ({ favBeers, favVisible }) => {
     return (
-        <div className="favourites">
+        <div className={favVisible ? 'favourites showFavs' : 'favourites'}>
             <ul className="favouritesList">
                 {favBeers.map(el => <FavouritiesItem key={el.name} beer={el}></FavouritiesItem>)}
             </ul>

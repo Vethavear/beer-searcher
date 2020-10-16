@@ -4,7 +4,7 @@ import { signUpStart } from './../../redux/User/user.actions'
 import { useHistory} from 'react-router-dom'
 import Button from '../../components/Button/Button'
 import FormInput from '../../components/FormInput/FormInput'
-import './SignUp.scss'
+
 import AuthWrapper from '../../components/AuthWrapper/AuthWrapper'
 import {Link} from 'react-router-dom'
 

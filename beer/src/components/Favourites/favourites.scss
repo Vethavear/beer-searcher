@@ -1,14 +1,26 @@
 @import "../../vars.scss";
 
-.favourites{
-    position:absolute;
-    top:10vh;
-    right:0;
+.favourites {
+    position: absolute;
+    top: 10vh;
+    right: 0;
     height: 30vh;
     width: 9%;
     padding: 1rem;
     overflow-y: scroll;
-    z-index:10;
+    z-index: 3;
     background: $tertiary-color;
     border: 1px solid $secondary-color;
+    transform: translateX(100%);
+    transition: 0.5s all;
+}
+.showFavs {
+    transform: translateX(0);
+}
+@media (max-width: $mobile) {
+    .favourites{
+        top: -33vh;
+        width: 30%;
+    }
+
 }

@@ -2,11 +2,9 @@
 
 html {
     font-size: 10px;
+    overflow-x:hidden;
 }
 
-html,
-body {
-}
 
 #root,
 .App {
@@ -31,6 +29,7 @@ body {
 
 a {
     text-decoration: none;
+    color: $secondary-color;
 }
 
 button{
@@ -40,4 +39,12 @@ button{
 
 ul {
     list-style: none;
+}
+
+
+@media (max-width: $mobile){
+
+html{
+    font-size: 8px;
+}
 }

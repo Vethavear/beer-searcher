@@ -1,6 +1,10 @@
+@import "../../../vars.scss";
+
+
 .favouritesItem{
     display:flex;
     align-items: center;
+    justify-content:space-between;
     margin: 1rem 0;
     cursor:pointer;
     .beerName{
@@ -17,4 +21,14 @@
             height:50px;
         }
     }
+}
+
+@media (max-width: $mobile) {
+
+.favouritesItem{
+    .beerName{
+        padding: 0.25rem;
+    }
+}
+
 }
