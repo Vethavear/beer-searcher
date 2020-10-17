@@ -1,6 +1,6 @@
 @import "../../../vars.scss";
 
-.beerListItemWrapper{
+.beerListItemWrapper {
     position: relative;
 }
 .beerListItem {
@@ -15,6 +15,9 @@
     height: 400px;
     width: 300px;
     cursor: pointer;
+    &:hover {
+        border: 1px solid $secondary-color;
+    }
     .beerName {
         font-size: 2rem;
         font-weight: bold;

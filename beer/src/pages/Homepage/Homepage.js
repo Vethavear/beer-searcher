@@ -1,10 +1,11 @@
 import React from 'react'
 import './homepage-styles.scss';
+import { Link } from 'react-router-dom';
 import Button from '../../components/Button/Button'
 import beerImg from '../../assets/beerImg.jpg'
 
 
-const  Homepage = props => {
+const Homepage = props => {
     return (
         <section className="homePage">
             <div className="leftContent">
@@ -20,10 +21,14 @@ const  Homepage = props => {
                         <li className="aboutListItem">- Recognize with which food they taste best</li>
                     </ul>
                 </div>
-        <Button>Start Exploring</Button>
+                <Link to="/explore">
+                    <Button className="button exploreButton">
+                        Start Exploring
+                </Button>
+                </Link>
             </div>
             <div className="rightContent">
-                    <img className="img" src={beerImg} alt="beer"/>
+                <img className="img" src={beerImg} alt="beer" />
             </div>
         </section>
     )

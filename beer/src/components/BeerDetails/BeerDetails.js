@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import './beerDetails.scss'
 import { IconContext } from "react-icons";
 import { IoIosArrowRoundBack } from "react-icons/io";
+import image from '../../assets/fernando-latorre-HqEFdR1MDSo-unsplash.png'
 
 
 const BeerDetails = ({ beer, changeBeerDetails }) => {
+
     return (
         <div className="beerDetails">
             <header className="beerDetailsHeader">
@@ -12,7 +14,7 @@ const BeerDetails = ({ beer, changeBeerDetails }) => {
                     {beer.name}
                 </h2>
                 <button className="beerDetailsBackButton" onClick={() => {
-                   changeBeerDetails({})
+                    changeBeerDetails({})
                 }}>
                     <IconContext.Provider value={{ className: 'arrowIcon' }}>
                         <IoIosArrowRoundBack></IoIosArrowRoundBack>
@@ -57,7 +59,8 @@ const BeerDetails = ({ beer, changeBeerDetails }) => {
                 </li>
             </ul>
             <div className="beerImg">
-                <img src={beer.image_url} alt="" />
+                <img src={beer.image_url}
+                />
             </div>
         </div>
     )
