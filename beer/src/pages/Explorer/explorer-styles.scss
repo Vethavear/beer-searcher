@@ -4,6 +4,9 @@
     height: 90vh;
     display: flex;
     font-size: 1.5rem;
+    .searchIcon {
+        display: none;
+    }
     .leftContent {
         flex: 1;
         display: flex;
@@ -24,12 +27,15 @@
             background: #fcfcfc;
             transform: rotate(45deg);
         }
+
         .searcher {
             display: flex;
             flex-direction: column;
             align-items: center;
             width: 100%;
-
+            .closeSearcherIcon {
+                display: none;
+            }
             .label {
                 font-size: 2rem;
                 width: 100%;
@@ -59,4 +65,48 @@
         height: 100%;
         overflow-y: scroll;
     }
+}
+
+@media (max-width: $mobile) {
+    .explorer {
+        position: relative;
+        .searchIcon {
+            font-size: 3rem;
+            display: inherit;
+            position: fixed;
+            right: 0;
+            margin: 1rem;
+        }
+        .leftContent {
+            position: absolute;
+            z-index: 2;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            transform: translateX(-100%);
+            transition: all 0.5s;
+            &::after {
+                display: none;
+            }
+            .searcher {
+                .closeSearcherIcon {
+                    display: inherit;
+                    font-size: 2.5rem;
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    margin: 1rem;
+                }
+            }
+        }
+        .rightContent {
+            flex: 1;
+            width: 100%;
+        }
+    }
+}
+
+.showLeftContent {
+    transform: translateX(0) !important;
 }

@@ -6,6 +6,8 @@ import { toggleFavs, getFavsStart, clearBeerAndFavsOnSignOut } from './../../red
 import './navbar-styles.scss';
 import { FaStar } from "react-icons/fa";
 import Favourites from '../Favourites/Favourites'
+import { IconContext } from "react-icons";
+
 
 
 export const Navbar = () => {
@@ -41,17 +43,16 @@ export const Navbar = () => {
                     <button onClick={() => signOut()} className="navItemLink">Sign out</button>
                 </li>)}
                 {currentUser && (<li className="navItem">
-                    <a onClick={() => {
+
+                    <FaStar className="favStar" onClick={() => {
                         dispatch(toggleFavs());
-                    }} className="navItemLink">
-                        <FaStar></FaStar>
-                    </a>
-                    {isFavVisible && (<Favourites favBeers={favourites}></Favourites>)}
+                    }}></FaStar>
+                    <Favourites favVisible={isFavVisible} favBeers={favourites}></Favourites>
                 </li>)}
 
                 {!currentUser && (<li className="navItem">
 
-                <Link className="navItemLink" to="/signin">Sign in</Link>
+                    <Link className="navItemLink" to="/signin">Sign in</Link>
                 </li>)}
             </ul>
         </div>

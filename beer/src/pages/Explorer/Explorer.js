@@ -4,8 +4,12 @@ import './explorer-styles.scss';
 import Button from '../../components/Button/Button'
 import BeerList from '../../components/BeerList/BeerList'
 import FormInput from '../../components/FormInput/FormInput'
-import {showBeerDetails} from '../../redux/Beers/beer.actions'
+import { showBeerDetails } from '../../redux/Beers/beer.actions'
 import axios from 'axios'
+import { FaSearch } from 'react-icons/fa'
+import { ImCross } from 'react-icons/im'
+import { IconContext } from "react-icons";
+
 
 
 function useFormFields(initialValues) {
@@ -21,19 +25,18 @@ const Explorer = () => {
     const beerDetails = useSelector(state => state.beers.beerDetails);
     const dispatch = useDispatch();
     const [beers, setBeers] = useState([]);
+    const [isLeftContentVisible, setLeftContentVisible] = useState(false);
     const randomBeerQuery = new Object('https://api.punkapi.com/v2/beers/random');
     const initalQuery = 'https://api.punkapi.com/v2/beers?';
     const [query, setQuery] = useState(initalQuery);
     useEffect(() => {
-        // LOADING NA TRUE
         axios.get(query).then(result => {
             return setBeers(result.data)
-        }).catch(error =>
-            { console.log(error);
-                return setBeers({})
-            });
+        }).catch(error => {
+            console.log(error);
+            return setBeers({})
+        });
     }, [query])
-
     const { formFields, createChangeHandler } = useFormFields({
         beer_name: "",
         yeast: "",
@@ -43,6 +46,7 @@ const Explorer = () => {
     });
     const handleSubmit = (e) => {
         e.preventDefault();
+        setQuery(initalQuery);
         Object.keys(formFields).forEach(key => {
             if (formFields[key].length > 1) {
                 setQuery(prevValue =>
@@ -53,6 +57,7 @@ const Explorer = () => {
         if (beerDetails.hasOwnProperty('name')) {
             dispatch(showBeerDetails({}));
         }
+        setLeftContentVisible(false);
     };
     const showRandomBeer = () => {
         setQuery(randomBeerQuery);
@@ -60,8 +65,14 @@ const Explorer = () => {
     }
     return (
         <section className="explorer">
-            <div className="leftContent">
+            <IconContext.Provider value={{ className: 'searchIcon' }}>
+                <FaSearch onClick={() => setLeftContentVisible(true)}></FaSearch>
+            </IconContext.Provider>
+            <div className={isLeftContentVisible ? 'leftContent showLeftContent' : 'leftContent'}>
                 <form className="searcher" onSubmit={handleSubmit}>
+                    <IconContext.Provider value={{ className: 'closeSearcherIcon' }}>
+                        <ImCross onClick={() => setLeftContentVisible(false)}></ImCross>
+                    </IconContext.Provider>
                     <FormInput label="Name" type="text" name="beer_name" handleChange={createChangeHandler('beer_name')}></FormInput>
                     <FormInput label="Yeast" type="text" name="yeast" handleChange={createChangeHandler('yeast')}></FormInput>
                     <FormInput label="Hops" type="text" name="hops" handleChange={createChangeHandler('hops')}></FormInput>
@@ -74,7 +85,7 @@ const Explorer = () => {
             <div className="rightContent">
                 <BeerList beers={beers}></BeerList>
             </div>
-        </section>
+        </section >
     )
 }
 

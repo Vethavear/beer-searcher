@@ -2,6 +2,12 @@
 
 .beerListItemWrapper {
     position: relative;
+    z-index: auto;
+    .favsButton {
+        position: absolute;
+        top: 3%;
+        left: 4%;
+    }
 }
 .beerListItem {
     display: flex;
