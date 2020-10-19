@@ -70,10 +70,12 @@
 @media (max-width: $mobile) {
     .explorer {
         position: relative;
+        z-index: 1;
         .searchIcon {
             font-size: 3rem;
             display: inherit;
-            position: fixed;
+            position: absolute;
+            z-index:2;
             right: 0;
             margin: 1rem;
         }
