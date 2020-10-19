@@ -13,7 +13,7 @@ const mapState = ({ user }) => ({
     currentUser: user.currentUser
 })
 
-const SignIn = props => {
+const SignIn = () => {
     const { currentUser } = useSelector(mapState);
     const dispatch = useDispatch();
     const [login, setLogin] = useState('');
@@ -26,7 +26,7 @@ const SignIn = props => {
             history.push('/');
             dispatch(getFavsStart());
         }
-    }, [currentUser])
+    }, [currentUser, history, dispatch])
 
     const resetForm = () => {
         setLogin('');

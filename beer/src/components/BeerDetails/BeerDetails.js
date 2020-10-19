@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import React from 'react'
 import './beerDetails.scss'
 import { IconContext } from "react-icons";
 import { IoIosArrowRoundBack } from "react-icons/io";
@@ -59,7 +59,7 @@ const BeerDetails = ({ beer, changeBeerDetails }) => {
                 </li>
             </ul>
             <div className="beerImg">
-                <img src={beer.image_url}
+                <img src={beer.image_url} alt="Beer img"
                 />
             </div>
         </div>

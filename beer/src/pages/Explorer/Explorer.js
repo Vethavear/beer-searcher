@@ -26,7 +26,7 @@ const Explorer = () => {
     const dispatch = useDispatch();
     const [beers, setBeers] = useState([]);
     const [isLeftContentVisible, setLeftContentVisible] = useState(false);
-    const randomBeerQuery = new Object('https://api.punkapi.com/v2/beers/random');
+    const {randomBeerQuery} = { randomBeerQuery: 'https://api.punkapi.com/v2/beers/random' };
     const initalQuery = 'https://api.punkapi.com/v2/beers?';
     const [query, setQuery] = useState(initalQuery);
     useEffect(() => {
