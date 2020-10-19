@@ -6,7 +6,6 @@ import { toggleFavs, getFavsStart, clearBeerAndFavsOnSignOut } from './../../red
 import './navbar-styles.scss';
 import { FaStar } from "react-icons/fa";
 import Favourites from '../Favourites/Favourites'
-import { IconContext } from "react-icons";
 
 
 
@@ -19,7 +18,7 @@ export const Navbar = () => {
 
         dispatch(getFavsStart());
 
-    }, [])
+    }, [dispatch])
 
 
     const signOut = () => {

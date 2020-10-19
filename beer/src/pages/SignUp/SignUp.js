@@ -4,7 +4,6 @@ import { signUpStart } from './../../redux/User/user.actions'
 import { useHistory} from 'react-router-dom'
 import Button from '../../components/Button/Button'
 import FormInput from '../../components/FormInput/FormInput'
-
 import AuthWrapper from '../../components/AuthWrapper/AuthWrapper'
 import {Link} from 'react-router-dom'
 
@@ -15,7 +14,7 @@ const mapState = ({ user }) => ({
 
 }
 )
-const SignUp = props => {
+const SignUp = () => {
     const { currentUser, userErr } = useSelector(mapState)
     const history = useHistory();
     const dispatch = useDispatch();
@@ -29,7 +28,7 @@ const SignUp = props => {
             resetForm();
             history.push('/')
         }
-    }, [currentUser])
+    }, [currentUser, history])
 
     useEffect(() => {
         if (Array.isArray(userErr) && userErr.length > 0) {
