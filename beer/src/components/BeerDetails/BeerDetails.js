@@ -36,16 +36,16 @@ const BeerDetails = ({ beer, changeBeerDetails }) => {
                 <li className="beerDetailsListItem">
                     <h3 className="title">Hops</h3>
                     <div className="content">
-                        {beer.ingredients.hops.map(el =>
-                            <p className="contentItem" key={el.name + el.amount.value + el.amount.unit}>{el.name} - {el.amount.value} {el.amount.unit}</p>
+                        {beer.ingredients.hops.map((el, index) =>
+                            <p className="contentItem" key={index}>{el.name} - {el.amount.value} {el.amount.unit}</p>
                         )}
                     </div>
                 </li>
                 <li className="beerDetailsListItem">
                     <h3 className="title">Malt</h3>
                     <div className="content">
-                        {beer.ingredients.malt.map(el =>
-                            <p className="contentItem" key={el.name + el.amount.value + el.amount.unit}>{el.name} - {el.amount.value} {el.amount.unit}</p>
+                        {beer.ingredients.malt.map((el, index) =>
+                            <p className="contentItem" key={index}>{el.name} - {el.amount.value} {el.amount.unit}</p>
                         )}
                     </div>
                 </li>

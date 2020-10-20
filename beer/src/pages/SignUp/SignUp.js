@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { signUpStart } from './../../redux/User/user.actions'
-import { useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import Button from '../../components/Button/Button'
 import FormInput from '../../components/FormInput/FormInput'
 import AuthWrapper from '../../components/AuthWrapper/AuthWrapper'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 const mapState = ({ user }) => ({
@@ -21,7 +21,6 @@ const SignUp = () => {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [errors, setErrors] = useState([]);
 
     useEffect(() => {
         if (currentUser) {
@@ -30,11 +29,6 @@ const SignUp = () => {
         }
     }, [currentUser, history])
 
-    useEffect(() => {
-        if (Array.isArray(userErr) && userErr.length > 0) {
-            setErrors(userErr)
-        }
-    }, [userErr])
 
     const resetForm = () => {
         setLogin('');
@@ -51,22 +45,14 @@ const SignUp = () => {
     }
     return (
         <AuthWrapper>
-            {
-                errors.length > 0 && (
-                    <ul>
-                        {errors.map((err, index) => {
-                            return (
-                                alert(err)
-                            )
-                        })}
-                    </ul>
-                )
-            }
 
             <form className="form" onSubmit={handleSubmit}>
+                <div className="errors">
+                    {userErr}
+                </div>
                 <FormInput label="e-mail" value={login} type="email" name="login" handleChange={e => setLogin(e.target.value)}></FormInput>
                 <FormInput label="password" value={password} type="password" name="password" handleChange={e => setPassword(e.target.value)} ></FormInput>
-                <FormInput label="password" value={confirmPassword} type="password" name="confirmPassword" handleChange={e => setConfirmPassword(e.target.value)} ></FormInput>
+                <FormInput label="confirm password" value={confirmPassword} type="password" name="confirmPassword" handleChange={e => setConfirmPassword(e.target.value)} ></FormInput>
                 <Button type="submit">Sign Up</Button>
                 <p>Already registered?</p>
                 <Link to="/signIn">Sign In</Link>
