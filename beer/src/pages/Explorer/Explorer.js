@@ -22,21 +22,38 @@ function useFormFields(initialValues) {
 }
 
 const Explorer = () => {
-    const beerDetails = useSelector(state => state.beers.beerDetails);
-    const dispatch = useDispatch();
-    const [beers, setBeers] = useState([]);
-    const [isLeftContentVisible, setLeftContentVisible] = useState(false);
-    const {randomBeerQuery} = { randomBeerQuery: 'https://api.punkapi.com/v2/beers/random' };
+    // eslint-disable-next-line
+    // const randomBeerQuery = new Object('https://api.punkapi.com/v2/beers/random');
     const initalQuery = 'https://api.punkapi.com/v2/beers?';
+    const dispatch = useDispatch();
+    const beerDetails = useSelector(state => state.beers.beerDetails);
+    const [beers, setBeers] = useState([]);
+    const [randomBeerQuery, setRandomBeerQuery] = useState({});
     const [query, setQuery] = useState(initalQuery);
+    const [isLeftContentVisible, setLeftContentVisible] = useState(false);
+
     useEffect(() => {
         axios.get(query).then(result => {
+
             return setBeers(result.data)
-        }).catch(error => {
-            console.log(error);
-            return setBeers({})
-        });
+        })
+            .catch(error => {
+                console.log(error);
+                return setBeers([])
+            });
     }, [query])
+
+    useEffect(() => {
+
+        axios.get(randomBeerQuery).then(result => {
+            return dispatch(showBeerDetails(result.data[0]))
+        })
+            .catch(error => {
+                console.log(error);
+                return;
+            });
+
+    }, [randomBeerQuery, dispatch])
     const { formFields, createChangeHandler } = useFormFields({
         beer_name: "",
         yeast: "",
@@ -60,8 +77,11 @@ const Explorer = () => {
         setLeftContentVisible(false);
     };
     const showRandomBeer = () => {
-        setQuery(randomBeerQuery);
-        dispatch(showBeerDetails(beers[0]))
+    // eslint-disable-next-line
+        setRandomBeerQuery(new Object('https://api.punkapi.com/v2/beers/random'));
+    }
+    const resetSearcher = () => {
+        setQuery(initalQuery);
     }
     return (
         <section className="explorer">
@@ -79,6 +99,7 @@ const Explorer = () => {
                     <FormInput label="Malt" type="text" name="malt" handleChange={createChangeHandler('malt')}></FormInput>
                     <FormInput label="Food" type="text" name="food" handleChange={createChangeHandler('food')}></FormInput>
                     <Button type="submit">Search</Button>
+                    <Button type="button" onClick={resetSearcher}>Reset</Button>
                 </form>
                 <Button type="button" onClick={showRandomBeer}>Random Beer</Button>
             </div>

@@ -20,10 +20,8 @@ export function* signIn({ payload: { login, password } }) {
     try {
         const { user } = yield auth.signInWithEmailAndPassword(login, password);
         yield getSnapshotFromUserAuth(user)
-
-
-
     } catch (err) {
+        yield put(userError(err.message));
     }
 }
 
@@ -76,7 +74,7 @@ export function* signUp({
         // yield call(handleUserProfile, { userAuth: user });
         yield getSnapshotFromUserAuth(user);
     } catch (err) {
-        console.log(err)
+        yield put(userError(err.message));
     }
 }
 

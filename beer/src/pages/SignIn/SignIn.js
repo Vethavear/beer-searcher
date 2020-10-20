@@ -10,11 +10,13 @@ import AuthWrapper from '../../components/AuthWrapper/AuthWrapper'
 
 
 const mapState = ({ user }) => ({
-    currentUser: user.currentUser
+    currentUser: user.currentUser,
+    userErr: user.userErr
+
 })
 
 const SignIn = () => {
-    const { currentUser } = useSelector(mapState);
+    const { currentUser, userErr } = useSelector(mapState);
     const dispatch = useDispatch();
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
@@ -36,14 +38,15 @@ const SignIn = () => {
     const handleSubmit = event => {
         event.preventDefault();
         dispatch(signInStart({ login, password }))
-
-
     }
 
     return (
         <AuthWrapper>
 
             <form className="form" onSubmit={handleSubmit}>
+            <div className="errors">
+                    {userErr}
+                </div>
                 <FormInput label="e-mail" value={login} type="email" name="login" handleChange={e => setLogin(e.target.value)}></FormInput>
                 <FormInput label="password" value={password} type="password" name="password" handleChange={e => setPassword(e.target.value)}></FormInput>
                 <Button type="submit">Sign In</Button>

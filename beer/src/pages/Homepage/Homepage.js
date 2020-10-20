@@ -17,8 +17,8 @@ const Homepage = props => {
                     <ul className="aboutList">
                         <li className="aboutListItem">- Check their ingredients.</li>
                         <li className="aboutListItem">- See temperature of fermentation.</li>
-                        <li className="aboutListItem">- Discover type of hops used</li>
-                        <li className="aboutListItem">- Recognize with which food they taste best</li>
+                        <li className="aboutListItem">- Discover type of hops used.</li>
+                        <li className="aboutListItem">- Recognize with which food they taste best.</li>
                     </ul>
                 </div>
                 <Link to="/explore">
