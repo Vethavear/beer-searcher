@@ -44,14 +44,13 @@ const Explorer = () => {
     }, [query])
 
     useEffect(() => {
-
-        axios.get(randomBeerQuery).then(result => {
-            return dispatch(showBeerDetails(result.data[0]))
-        })
-            .catch(error => {
-                console.log(error);
-                return;
-            });
+            axios.get(randomBeerQuery).then(result => {
+                return dispatch(showBeerDetails(result.data[0]))
+            })
+                .catch(error => {
+                    console.log(error);
+                    return;
+                });
 
     }, [randomBeerQuery, dispatch])
     const { formFields, createChangeHandler } = useFormFields({
@@ -77,8 +76,9 @@ const Explorer = () => {
         setLeftContentVisible(false);
     };
     const showRandomBeer = () => {
-    // eslint-disable-next-line
+        // eslint-disable-next-line
         setRandomBeerQuery(new Object('https://api.punkapi.com/v2/beers/random'));
+        console.log(randomBeerQuery)
     }
     const resetSearcher = () => {
         setQuery(initalQuery);
@@ -99,7 +99,7 @@ const Explorer = () => {
                     <FormInput label="Malt" type="text" name="malt" handleChange={createChangeHandler('malt')}></FormInput>
                     <FormInput label="Food" type="text" name="food" handleChange={createChangeHandler('food')}></FormInput>
                     <Button type="submit">Search</Button>
-                    <Button type="button" onClick={resetSearcher}>Reset</Button>
+                    <Button type="button" onClick={resetSearcher}>All Beers</Button>
                 </form>
                 <Button type="button" onClick={showRandomBeer}>Random Beer</Button>
             </div>

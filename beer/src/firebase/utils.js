@@ -48,9 +48,10 @@ export const getFavs = () => {
                     const { favs } = doc.data();
                     return favs;
                 } else {
-                    console.log('no beers in favs')
+                    return []
                 }
             }).then(favs => {
+                console.log(favs);
                 resolve(favs)
             })
         }

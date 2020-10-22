@@ -13,29 +13,31 @@
         background: $tertiary-color;
         width: 50%;
         height: 60%;
-        padding: 3rem 0;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
         font-size: 2rem;
         box-shadow: 0 0px 2px $secondary-color, 0 0px 2px $secondary-color;
-        padding: 2.5% 7%;
+        padding: 2.5% 3%;
 
         .label {
                 font-size: 2rem;
                 width: 100%;
                 margin: 2rem 0;
-                padding-right: 20%;
+                // padding-right: 20%;
                 display: flex;
                 justify-content: space-between;
                 align-items: flex-end;
+                // #text{
+                //         font-size: 5rem;
+                // }
 
                 .input {
                         border: none;
                         background: none;
                         border-bottom: 2px solid $border-color;
-                        width: 70%;
+                        width: 60%;
                         font-size: 2rem;
                 }
         }
@@ -43,6 +45,12 @@
 
 @media (max-width: $mobile) {
         .form {
+                height: 100%;
                 width: 100%;
+                .label{
+                        .input{
+                                width: 50%;
+                        }
+                }
         }
 }

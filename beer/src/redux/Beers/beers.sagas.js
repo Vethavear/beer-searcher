@@ -30,7 +30,6 @@ function* onGetFavsStart() {
     try {
         yield takeLatest(beerTypes.GET_FAVS_START, getFavouriteBeers)
     } catch (err) {
-
         console.log(err)
     }
 }
@@ -40,6 +39,7 @@ function* getFavouriteBeers() {
         const favs = yield call(getFavs);
         yield put(getFavsSucceed(favs));
     } catch (err) {
+        console.log('error w sadze')
         console.log(err)
         yield put(getFavsSucceed([]))
     }
