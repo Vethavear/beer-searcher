@@ -20,7 +20,6 @@ export const Navbar = () => {
 
     }, [dispatch])
 
-
     const signOut = () => {
         dispatch(signOutStart());
         dispatch(clearBeerAndFavsOnSignOut())
