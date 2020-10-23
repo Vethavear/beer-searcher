@@ -21,7 +21,7 @@ Home page:
          alt="Screenshot">
  
 Explorer page: 
-    <img src="https://user-images.githubusercontent.com/26926726/97008269-e3466b80-1542-11eb-8329-aa7ec248ee06.png"
+    <img src="https://user-images.githubusercontent.com/26926726/97008273-e3466b80-1542-11eb-88f3-77ffd3579553.png"
          alt="Screenshot">
          
 Selected beer page:
